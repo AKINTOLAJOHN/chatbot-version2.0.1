@@ -49,7 +49,7 @@ const GoogleProvider = new GoogleAuthProvider()
             let email = JSON.parse(newObject);
             let currentMessage = messages[i];
             if(currentMessage.sender == email){
-              messageText += `<div class="bg-success text-white pb-2 mb-2 rounded"  style="width: 250px; margin-left: 430px ;">${currentMessage.content}</div>`;
+              messageText += `<div class="bg-success text-white pb-2 mb-2 rounded"  style="width: 250px; margin-left: 500px ;">${currentMessage.content}</div>`;
             }else{
               messageText += `<div class="bg-info text-white rounded p-2 mb-1" style="width: 250px; margin-left: 0px ;">${currentMessage.content}</div>`;
             }
@@ -68,17 +68,18 @@ const GoogleProvider = new GoogleAuthProvider()
   good.addEventListener('click', ()=>{
     let newObject = window.localStorage.getItem("email");
     let email = JSON.parse(newObject);
-    document.getElementById("messageInp").value = ""
-  
-  let message = {sender: email.toLowerCase(), content: document.getElementById('messageInp').value};
-  let dbRef = ref(db, `message/${nextValue}`);
+    
+    let message = {sender: email, content: messageInp.value};
+    console.log(message)
+    let dbRef = ref(db, `message/${nextValue}`);
     set(dbRef, message)
+    document.getElementById("messageInp").value = ""
 
     let messageText = "";
           for(let i = 0; i < messages.length; i++){
             let currentMessage = messages[i];
             if(currentMessage.sender == email){
-              messageText += `<div class="bg-success text-white pb-2 mb-2 rounded"  style="width: 250px; margin-left: 430px ;">${currentMessage.content}</div>`;
+              messageText += `<div class="bg-success text-white pb-2 mb-2 rounded"  style="width: 250px; margin-left: 500px ;">${currentMessage.content}</div>`;
             }else{
               messageText += `<div class="bg-info text-white rounded p-2 mb-1" style="width: 250px; margin-left: 0px ;">${currentMessage.content}</div>`;
             }
